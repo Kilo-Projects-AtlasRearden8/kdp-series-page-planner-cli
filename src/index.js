@@ -1,15 +1,18 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { Command } from 'commander';
 import { loadSeries } from './parser.js';
 import { markdownMetadata, csvMetadata } from './metadata.js';
 import { markdownKeywordCheck, checkBook } from './keywords.js';
 import { markdownCalendar, csvCalendar } from './calendar.js';
+import { markdownConsistencyCheck } from './consistency.js';
 
 export function buildOutput({ series, books, limits }) {
   return {
     md: markdownMetadata({ series, books }),
     csv: csvMetadata({ series, books }),
     keywordCheck: markdownKeywordCheck({ series, books, limits }),
+    consistencyCheck: markdownConsistencyCheck({ series, books }),
     calendarMd: markdownCalendar({ series, books }),
     calendarCsv: csvCalendar({ series, books }),
   };
@@ -37,6 +40,7 @@ export function writeSelected(outputDir, outputs, wantsMd, wantsCsv) {
     for (const [name, content] of [
       ['metadata.md', outputs.md],
       ['keyword-check.md', outputs.keywordCheck],
+      ['consistency-check.md', outputs.consistencyCheck],
       ['release-calendar.md', outputs.calendarMd],
     ]) {
       write(name, content);
@@ -55,6 +59,7 @@ export function writeSelected(outputDir, outputs, wantsMd, wantsCsv) {
       ['metadata.md', outputs.md],
       ['metadata.csv', outputs.csv],
       ['keyword-check.md', outputs.keywordCheck],
+      ['consistency-check.md', outputs.consistencyCheck],
       ['release-calendar.md', outputs.calendarMd],
       ['release-calendar.csv', outputs.calendarCsv],
     ]) {
@@ -64,9 +69,8 @@ export function writeSelected(outputDir, outputs, wantsMd, wantsCsv) {
   return written;
 }
 
-export async function run(argv) {
-  const { program } = await import('commander');
-
+export function buildProgram(argv) {
+  const program = new Command();
   program
     .name('kdp-planner')
     .description('Turn a YAML book series file into KDP-ready metadata sheets, keyword-length checks, and a release calendar (Markdown/CSV).')
@@ -77,9 +81,13 @@ export async function run(argv) {
     .option('--keyword-max <n>', 'Maximum characters per keyword', String(100))
     .option('--keywords-combined-max <n>', 'Maximum combined keyword characters', String(500))
     .option('--title-subtitle-max <n>', 'Maximum title + subtitle characters', String(200))
-    .option('--description-max <n>', 'Maximum description characters', String(4000))
-    .parse(argv);
+    .option('--description-max <n>', 'Maximum description characters', String(4000));
+  program.parse(argv);
+  return program;
+}
 
+export async function run(argv) {
+  const program = buildProgram(argv);
   const input = program.args[0];
   if (!input) {
     console.error('Error: missing input YAML file. Usage: kdp-planner <input.yaml>');
@@ -110,6 +118,7 @@ export async function run(argv) {
   const violations = collectViolations(seriesData.books, seriesData.limits);
 
   const written = writeSelected(options.out, outputs, wantsMd, wantsCsv);
+
   console.log(`KDP planner: ${seriesData.books.length} book(s) from "${seriesData.series.name}"`);
   console.log(`  Wrote: ${written.join(', ')}`);
   console.log(`  Output dir: ${options.out}`);
