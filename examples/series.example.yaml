@@ -1,0 +1,88 @@
+series:
+  name: "AI Made Simple"
+  author: "Dylan Asdale"
+  publisher: "Asdale Dynamics, LLC"
+  blurb: "Plain-English AI guides written like a friend would explain them: step by step, never condescending."
+  categories:
+    - "Computers & Technology"
+    - "Self-Help"
+books:
+  - number: 1
+    title: "The Massive AI Manual"
+    subtitle: "AI explained like a friend would"
+    keywords:
+      - "ai for beginners"
+      - "artificial intelligence guide"
+      - "how to use ai"
+    blurb: "New to AI? This manual walks you through what artificial intelligence is, which tools to try first, and how to use them safely - no computer science degree required."
+    release_date: "2026-11-15"
+    formats:
+      - ebook
+      - paperback
+    price_usd: 4.99
+    isbn: ""
+    categories:
+      - "Computers & Technology"
+  - number: 2
+    title: "AI Agents & MCP Made Simple"
+    subtitle: "Build your first AI agents and connect them with the Model Context Protocol"
+    keywords:
+      - "ai agents for beginners"
+      - "model context protocol tutorial"
+      - "mcp server explained"
+      - "build ai agents"
+      - "local ai agents"
+      - "ai automation basics"
+      - "mcp for non-coders"
+    blurb: "Learn how AI agents work and how to wire them into your tools with MCP, step by step, with examples you can run on your own computer."
+    release_date: "2027-01-10"
+    formats:
+      - ebook
+    price_usd: 5.99
+    isbn: ""
+  - number: 3
+    title: "Local AI Made Simple"
+    subtitle: "Run large language models on your own hardware"
+    keywords:
+      - "run llm locally"
+      - "local ai tools"
+      - "private ai"
+      - "ollama guide"
+      - "ai without the cloud"
+    blurb: "Keep your data on your own machine. A beginner's guide to downloading and running large language models locally, free and private."
+    release_date: "2027-02-14"
+    formats:
+      - ebook
+      - paperback
+    price_usd: 4.99
+    isbn: ""
+  - number: 4
+    title: "Free AI Coding Made Simple"
+    subtitle: "Write code with AI without spending a dime"
+    keywords: [
+      "free ai coding tools",
+      "ai pair programming",
+      "github copilot alternatives",
+      "local llm coding"
+    ]
+    blurb: "AI-powered coding doesn't have to cost money. This guide covers the best free tools for writing, debugging, and understanding code with AI."
+    release_date: "2027-03-20"
+    formats:
+      - ebook
+    price_usd: 3.99
+    isbn: ""
+  - number: 5
+    title: "AI Automation Made Simple"
+    subtitle: "Put your busywork on autopilot"
+    keywords: [
+      "ai automation for beginners",
+      "automate repetitive tasks",
+      "no-code ai",
+      "ai workflows"
+    ]
+    blurb: "Stop doing repetitive work by hand. Learn how to automate everyday tasks with AI tools, written for people who have never touched automation before."
+    release_date: "2027-04-18"
+    formats:
+      - ebook
+    price_usd: 4.99
+    isbn: ""

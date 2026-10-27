@@ -1,0 +1,26 @@
+{
+  "name": "kdp-series-page-planner",
+  "version": "1.0.0",
+  "description": "Node CLI that turns a YAML book-series file into KDP-ready metadata sheets, keyword-length checks, and a release calendar (Markdown/CSV).",
+  "type": "module",
+  "bin": {
+    "kdp-planner": "./bin/kdp-planner"
+  },
+  "author": "Asdale Dynamics, LLC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dylanasdale/kdp-series-page-planner-cli"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "js-yaml": "^4.1.0"
+  },
+  "scripts": {
+    "test": "node --test",
+    "start": "node bin/kdp-planner"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
